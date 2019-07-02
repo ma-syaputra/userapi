@@ -1,0 +1,57 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Users Service
+host: localhost:10010
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+  - multipart/form-data
+produces:
+  - application/json
+  - multipart/form-data
+paths:
+  /api/users/registration:
+    x-swagger-router-controller: controllers
+    post:
+      description: Registration Users
+      operationId: registration
+      parameters:
+        - name: data
+          in: body
+          description: The name of the person to whom to say hello
+          required: true
+          schema:
+            $ref: "#/definitions/form_registration"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/form_registration_success"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/responseObj"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+definitions:
+  responseObj:
+    properties:
+      message:  {type:  string}
+      code: {type: string}
+  form_registration:
+    required:
+      - username
+      - password
+      - email
+    properties:
+      username:  { type: string, pattern:  '^[A-Za-z0-9]*$' }
+      password:  { type: string}
+      email:  { type: string,
+                format: email}
+  form_registration_success:
+    properties:
+      username:         { type: string, pattern:  '^[A-Za-z0-9]*$' }
