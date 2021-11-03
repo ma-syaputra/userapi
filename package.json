@@ -22,7 +22,7 @@
     "mysql2": "^1.6.5",
     "sequelize": "^5.9.0",
     "swagger-express-mw": "^0.7.0",
-    "validator": "^11.0.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "should": "^7.1.0",
